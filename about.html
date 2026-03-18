@@ -4,7 +4,7 @@
     <!-- Head of the webpage-->
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Yannick Verheugen" />
         <meta name="description" content="The Philosophers Blog aims to be a place for discussions on all common and uncommon topics of philosophy. This includes for example Ethics, Metaphysics but also Existentialism and Political Philosophy" />
         <link rel="stylesheet" href="styles/style.css" />
@@ -12,24 +12,62 @@
         <title>The Philosophers Blog</title>
     </head>
 
-    <!-- Header of the webpage-->
+    <!-- Navigation of the webpage-->
+        <nav>
+            <div class="topnav">
+                <a href="index.html">Home</a>
+                <a href="articles.html">Articles</a>
+                <a href="topics.html">Topics</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+
+
+    <!-- Hero of the about page-->
+        <header class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>About Us!</h1>
+                <p class="Subheading"><strong>This is The Philosophers Blog!</strong></p>
+            </div>
+        </header>
+
+    <!-- Header of the about page-->
     <body>
         <header>
             <h1>The Philosophers Blog</h1>
         </header>
 
-    <!-- Navigation of the webpage-->
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="articles.html">Articles</a></li>
-                <li><a href="topics.html">Topics</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <!-- Information about this blog -->
+        <section class="informations">
+            <p>
+                The Philosophers Blog is a new and open forum for Philosophy in the twenty-first century.
+            </p>
+            <p>
+                Our articles dust down the old as well as new philosophical thoughts and bring them into fresh conversation with modern-day readers of all ages. 
+                We are fascinated by and passionate about all philosophical topics and wish to introduce as many people as possible to its thrills and its spills, 
+                its charms and its challenges.
+            </p>
+            <p>
+                Philosophy is an enormously rich and varied discipline: we are committed to sharing, in an intelligent and accessible form, 
+                the joys of ancient languages, literature, history, philosophy and religion.
+            </p>
+            <p>
+                The Philosophers Blog is an experiment in open learning. We wish to debate complex issues with balance and nuance. We encourage feedback and 
+                constructive criticism from our readers, as well as ideas for articles that will continue the conversation. In particular, we welcome possible answers 
+                to questions that we cannot answer ourselves. Our aim is always to encourage curiosity, foster discussion and 
+                find our collective way through the labyrinth of ideas, without knowing where exactly we will end up.
+            </p>
+            <p>
+                Most importantly, the contributors to The Philosophers Blog are united by a love of this discipline. To be sure, not every idea from philosophy deserves to be defended, 
+                and we enthusiastically invite critical analysis of those that may be wrong. On the whole, however, our writers do seek to uphold and promote 
+                ideals that held sway thousands of years ago: open enquiry, robust debate and the unfettered exploration of ideas.
+            </p>
+        </section>
 
-            <form>
-                <input type="search" name="q" placeholder="Search query" />
-                <input type="submit" value="Go!" />
-            </form>
-        </nav>
+    <!-- Footer of the webpage-->
+        <footer>
+            <p>&copy; 2026 The Philosophers Blog. All rights reserved.</p>
+        </footer>
+    </body>
