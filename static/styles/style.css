@@ -63,10 +63,7 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-body {
-  /* Center the form on the page */
-  text-align: center;
-}
+/* Contact form styling */
 
 form {
   display: inline-block;
@@ -74,6 +71,7 @@ form {
   padding: 1em;
   border: 1px solid #cccccc;
   border-radius: 1em;
+  margin: 0 auto;
 }
 
 p + p {
