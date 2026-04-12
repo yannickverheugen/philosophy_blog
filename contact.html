@@ -38,6 +38,25 @@
             <h1>The Philosophers Blog</h1>
         </header>
 
+    <!-- Contact form-->
+        <form action="/my-handling-form-page" method="post">
+            <p>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="user_name" />
+            </p>
+            <p>
+                <label for="mail">Email:</label>
+                <input type="email" id="mail" name="user_email" />
+            </p>
+            <p>
+                <label for="msg">Message:</label>
+                <textarea id="msg" name="user_message"></textarea>
+            </p>
+            <p class="button">
+                <button type="submit">Send your message</button>
+            </p>
+        </form>
+
     <!-- Footer of the webpage-->
         <footer>
             <p>&copy; 2026 The Philosophers Blog. All rights reserved.</p>
