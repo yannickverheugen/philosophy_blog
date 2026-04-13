@@ -1,4 +1,4 @@
-from flask import Blueprint, app, redirect, render_template, url_for
+from flask import Blueprint, redirect, render_template
 
 posts_data = {
     'the-unexamined-life': {'title': 'The Unexamined Life', 'author': 'Socrates', 'content': 'The unexamined life is not worth living. We must question everything we think we know.'},
@@ -16,9 +16,9 @@ def article(slug):
     post = posts_data.get(slug)
     if not post:
         return redirect('/articles')
-    return redirect(url_for('articles.html', post=post))
+    return render_template('article.html', post=post)
 
 # List all articles route
 @articles_bp.route('/articles')
 def list_articles():
-    return redirect(url_for('articles.html', posts=posts_data))
+    return render_template('articles/articles.html', posts_data=posts_data)

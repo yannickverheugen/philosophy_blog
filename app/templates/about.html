@@ -14,11 +14,11 @@
     <!-- Navigation of the webpage-->
         <nav>
             <div class="topnav">
-                <a href="index.html">Home</a>
-                <a href="articles.html">Articles</a>
-                <a href="topics.html">Topics</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+                <a href="{{ url_for('simple_pages.index') }}">Home</a>
+                <a href="{{ url_for('articles.list_articles') }}">Articles</a>
+                <a href="{{ url_for('simple_pages.topics') }}">Topics</a>
+                <a href="{{ url_for('simple_pages.about') }}">About</a>
+                <a href="{{ url_for('simple_pages.contact') }}">Contact</a>
             </div>
         </nav>
 

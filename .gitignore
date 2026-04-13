@@ -12,3 +12,6 @@ __pycache__/
 
 # Database
 *.db
+
+# Tests
+.pytest_cache 

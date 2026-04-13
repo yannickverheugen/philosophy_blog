@@ -2,29 +2,25 @@ from flask import Blueprint, redirect, render_template, url_for, request
 
 blueprint = Blueprint('simple_pages', __name__)
 
+# Home page route
 @blueprint.route('/')
 def index():
-    return render_template('simple_pages/index.html')
+    return render_template('index.html')
 
 # About page route
 @blueprint.route('/about')
 def about():
-    return render_template('simple_pages/about.html')
-
-# Articles page route
-@blueprint.route('/articles')
-def articles():
-    return render_template('simple_pages/articles.html')
+    return render_template('about.html')
 
 # Contact page route
 @blueprint.route('/contact')
 def contact():
-    return render_template('simple_pages/contact.html')
+    return render_template('contact.html')
 
 # Topics page route
 @blueprint.route('/topics')
 def topics():
-    return render_template('simple_pages/topics.html')
+    return render_template('topics.html')
 
 # Contact form submission route
 @blueprint.route('/contact', methods=['POST'])
