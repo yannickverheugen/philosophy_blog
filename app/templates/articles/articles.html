@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Yannick Verheugen" />
         <meta name="description" content="The Philosophers Blog aims to be a place for discussions on all common and uncommon topics of philosophy. This includes for example Ethics, Metaphysics but also Existentialism and Political Philosophy" />
-        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
         <title>The Philosophers Blog</title>
     </head>
 
@@ -22,39 +22,30 @@
             </div>
         </nav>
 
-    <!-- Hero of the contact page-->
+    <!-- Hero of the articles page-->
         <header class="hero">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Contact Us!</h1>
-                <p class="Subheading"><strong>If you have questions or just want to get in contact please feel free to reach out to us.</strong></p>
+                <h1>Articles</h1>
+                <p class="Subheading"><strong>Read the latest articles on various philosophical topics.</strong></p>
             </div>
         </header>
 
-    <!-- Header of the contact page-->
+    <!-- Header of the articles page-->
     <body>
         <header>
             <h1>The Philosophers Blog</h1>
         </header>
-
-    <!-- Contact form-->
-        <form action="/contact" method="post">
-            <p>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="user_name" />
-            </p>
-            <p>
-                <label for="mail">Email:</label>
-                <input type="email" id="mail" name="user_email" />
-            </p>
-            <p>
-                <label for="msg">Message:</label>
-                <textarea id="msg" name="user_message"></textarea>
-            </p>
-            <p class="button">
-                <button type="submit">Send your message</button>
-            </p>
-        </form>
+        
+        <section class="articles list">
+            {% for slug, post in posts_data.items() %}
+            <article>
+                <h2><a href="/articles/{{ slug }}/">{{ post.title }}</a></h2>
+                <p class="meta">By {{ post.author }}</p>
+                <p>{{ post.content[:100] }}...</p>
+            </article>
+            {% endfor %}
+        </section>
 
     <!-- Footer of the webpage-->
         <footer>
