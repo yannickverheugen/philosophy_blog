@@ -38,11 +38,11 @@
         </header>
         
         <section class="articles list">
-            {% for slug, post in posts_data.items() %}
+            {% for article in articles %}
             <article>
-                <h2><a href="/articles/{{ slug }}">{{ post.title }}</a></h2>
-                <p class="meta">By {{ post.author }}</p>
-                <p>{{ post.content[:100] }}...</p>
+                <h2><a href="/articles/{{ article.slug }}">{{ article.title }}</a></h2>
+                <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') }}</p>
+                <p>{{ article.content[:100] }}...</p>
             </article>
             {% endfor %}
         </section>
@@ -52,3 +52,4 @@
             <p>&copy; 2026 The Philosophers Blog. All rights reserved.</p>
         </footer>
     </body>
+</html>

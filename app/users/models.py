@@ -6,4 +6,4 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now())
-    posts = db.relationship('Post', backref='author')
+    articles = db.relationship('Article', backref='author')

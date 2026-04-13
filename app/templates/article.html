@@ -38,10 +38,10 @@
         </header>
 
         <article>
-            <h1>{{ post.title }}</h1>
-            <p class="meta">By {{ post.author }}</p>
+            <h1>{{ article.title }}</h1>
+            <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') }}</p>
             <div class="content">
-                {{ post.content }}
+                {{ article.content }}
             </div>
         </article>
 
@@ -50,3 +50,5 @@
             <p>&copy; 2026 The Philosophers Blog. All rights reserved.</p>
         </footer>
     </body>
+
+</html>
