@@ -2,6 +2,7 @@ from flask import Flask
 from app.articles.routes import articles_bp
 from app.simple_pages.routes import blueprint as simple_pages_bp
 from app.extensions.database import db, migrate
+from . import articles, users
 
 def create_app():
     app = Flask(__name__)
