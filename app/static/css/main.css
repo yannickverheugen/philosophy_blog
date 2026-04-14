@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('/Users/yannickverheugen/CODE_University/SE_18 Web Technologies Basics/philosophy_blog/images/SoAR-3.png');
+  background-image: url('/static/images/SoAR-3.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -87,8 +87,6 @@ label {
 
 input,
 textarea {
-  /* To make sure that all text fields have the same font settings
-     By default, text areas have a monospace font */
   font: 1em sans-serif;
   /* Uniform text field size */
   width: 300px;
@@ -99,26 +97,40 @@ textarea {
 
 input:focus,
 textarea:focus {
-  /* Set the outline width and style */
   outline-style: solid;
-  /* To give a little highlight on active elements */
   outline-color: black;
 }
 
 textarea {
-  /* Align multiline text fields with their labels */
   vertical-align: top;
-  /* Provide space to type some text */
   height: 5em;
 }
 
 .button {
-  /* Align buttons with the text fields */
-  padding-left: 90px; /* same size as the label elements */
+  padding-left: 90px;
 }
 
 button {
-  /* This extra margin represent roughly the same space as the space
-     between the labels and their text fields */
   margin-left: 0.5em;
+}
+
+.topics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Topic card styling */
+.topic-card {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.topic-card h3 {
+    margin-bottom: 10px;
 }

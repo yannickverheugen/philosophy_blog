@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template
+from flask import Blueprint, redirect, render_template, request, current_app
 from .models import Article
 
 articles_bp = Blueprint('articles', __name__)
@@ -14,5 +14,7 @@ def article(slug):
 # List all articles route
 @articles_bp.route('/articles')
 def list_articles():
-    all_articles = Article.query.all()
-    return render_template('articles/articles.html', articles=all_articles)
+    page_number = request.args.get('page', 1, type=int)
+    print('=> Page number:', page_number)
+    article_pagination = Article.query.paginate(page=page_number, per_page=current_app.config['ARTICLES_PER_PAGE'])
+    return render_template('articles/articles.html', articles=article_pagination)
