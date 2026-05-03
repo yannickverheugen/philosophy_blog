@@ -2,6 +2,24 @@ from app.extensions.database import db
 from app.articles.models import Article
 from app.users.models import User
 
+def test_article_create(client):
+    user = User(username='test_author_create', email='test_author_create@example.com', password='test-password')
+    db.session.add(user)
+    db.session.commit()
+
+    article = Article(
+        slug='test-article-create',
+        title='Test Article Create',
+        content='This is a test article that is created and stored.',
+        author_id=user.id,
+    )
+
+    article.save()
+
+    created_article = Article.query.filter_by(slug='test-article-create').first()
+    assert created_article is not None
+    assert created_article.title == 'Test Article Create'
+
 def test_article_update(client):
     # create a user to associate with the article
     user = User(username ='test_author', email ='test_author@example.com', password ='test-password')

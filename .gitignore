@@ -14,4 +14,7 @@ __pycache__/
 database.db
 
 # Tests
-.pytest_cache 
+.pytest_cache
+
+# Workspace
+philosophy_blog.code-workspace
