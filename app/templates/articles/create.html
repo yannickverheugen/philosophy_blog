@@ -22,36 +22,42 @@
             </div>
         </nav>
 
-    <!-- Hero of the articles page-->
+    <!-- Hero of the contact page-->
         <header class="hero">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Articles</h1>
-                <p class="Subheading"><strong>Read the latest articles on various philosophical topics.</strong></p>
+                <h1>Create an Article</h1>
+                <p class="Subheading"><strong>Share your thoughts with our community.</strong></p>
             </div>
         </header>
 
-    <!-- Header of the articles page-->
+    <!-- Header of the contact page-->
     <body>
         <header>
             <h1>The Philosophers Blog</h1>
         </header>
-        
-        <a class="create-article-btn" href="{{ url_for('articles.create_article') }}">Create Article</a>
 
-        <section class="articles list">
-            {% for article in articles %}
-            <article>
-                <h2><a href="/articles/{{ article.slug }}">{{ article.title }}</a></h2>
-                <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') }}</p>
-                <p>{{ article.content[:100] }}...</p>
-            </article>
-            {% endfor %}
-        </section>
+    <!-- Contact form-->
+        <form action="{{ url_for('articles.article_post') }}" method="post">
+            <p>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" />
+            </p>
+            <p>
+                <label for="content">Content:</label>
+                <textarea id="content" name="content"></textarea>
+            </p>
+            <p>
+                <label for="author_id">Author ID:</label>
+                <input type="text" id="author_id" name="author_id" />
+            </p>
+            <p class="button">
+                <button type="submit">Create Article</button>
+            </p>
+        </form>
 
     <!-- Footer of the webpage-->
         <footer>
             <p>&copy; 2026 The Philosophers Blog. All rights reserved.</p>
         </footer>
     </body>
-</html>
