@@ -1,5 +1,5 @@
 from app.app import create_app
-from app.simple_pages.routes import contact_post
+from app.forms.routes import contact_post
 
 
 def test_contact_post_formats_response_text():
