@@ -12,8 +12,10 @@ A Flask-based blog application focused on philosophy content. The app uses:
 - Home, About, Topics, and Contact pages
 - Articles listing and article detail pages
 - Pagination support for article lists
+- Contact form submission stored in the database
 - Seed script for initial users and articles
 - Render-ready configuration with Postgres support
+- Automated tests for articles, simple pages, and the contact form
 
 ## Project Structure
 
@@ -21,8 +23,11 @@ A Flask-based blog application focused on philosophy content. The app uses:
 - `app/app.py`: app factory and extension/blueprint registration
 - `app/config.py`: environment-based app config
 - `app/articles/`: article models and routes
+- `app/forms/`: contact form model and POST handler
+- `app/simple_pages/`: home, about, contact, and topics pages
 - `app/users/`: user model
 - `app/scripts/seed.py`: idempotent seed script
+- `app/tests/`: pytest suite
 - `app/templates/`: Jinja templates
 - `app/static/`: static assets (CSS/images)
 - `migrations/`: Alembic migration files
@@ -48,7 +53,7 @@ pip install -r requirements.txt
 
 ### 3. Configure environment variables
 
-Create a `.env` file in project root:
+Create a `.env` file in the project root if you want to override the defaults:
 
 ```env
 SECRET_KEY=change-me
@@ -56,6 +61,7 @@ DATABASE_URL=sqlite:///app.db
 ```
 
 Notes:
+- The app boots without a `.env` file by falling back to `sqlite:///app.db` and a development secret key.
 - In production, `DATABASE_URL` should point to Postgres.
 - The app normalizes `postgres://` to `postgresql://` automatically.
 
@@ -85,6 +91,8 @@ Open:
 - `http://127.0.0.1:5000`
 
 ## Running Tests
+
+The test suite lives under `app/tests/`.
 
 ```bash
 pytest -v
@@ -143,6 +151,14 @@ Cause:
 
 Fix:
 - Resolve app import/runtime errors first, then run db commands again.
+
+### Tests are not discovered from the root `tests/` folder
+
+Cause:
+- The repository now stores tests under `app/tests/`.
+
+Fix:
+- Run `pytest -v` from the project root so pytest discovers `app/tests/` automatically.
 
 ### Foreign key error while seeding articles
 
