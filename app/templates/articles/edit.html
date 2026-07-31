@@ -19,8 +19,6 @@
                 <a href="{{ url_for('simple_pages.topics') }}">Topics</a>
                 <a href="{{ url_for('simple_pages.about') }}">About</a>
                 <a href="{{ url_for('simple_pages.contact') }}">Contact</a>
-                <a href="{{ url_for('users.get_login') }}">Login</a>
-                <a href="{{ url_for('users.get_register') }}">Register</a>
             </div>
         </nav>
 
@@ -28,8 +26,8 @@
         <header class="hero">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Articles</h1>
-                <p class="Subheading"><strong>Read the latest articles on various philosophical topics.</strong></p>
+                <h1>Edit Article</h1>
+                <p class="Subheading"><strong>Update your article before publishing the revised version.</strong></p>
             </div>
         </header>
 
@@ -39,26 +37,23 @@
             <h1>The Philosophers Blog</h1>
         </header>
 
-        <article>
-            <h1>{{ article.title }}</h1>
-            <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') if article.created_at else 'Unknown date' }}</p>
-            <div class="content">
-                {{ article.content }}
-            </div>
-            {% if session.get('user_id') == article.author_id %}
-            <div class="article-actions">
-                <a class="article-action edit" href="{{ url_for('articles.edit_article', slug=article.slug) }}">Edit</a>
-                <form class="article-delete-form" action="{{ url_for('articles.delete_article', slug=article.slug) }}" method="post">
-                    <button class="article-action delete" type="submit">Delete</button>
-                </form>
-            </div>
-            {% endif %}
-        </article>
+        <form class="article-form" action="{{ url_for('articles.update_article', slug=article.slug) }}" method="post">
+            <p>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" value="{{ article.title }}" />
+            </p>
+            <p>
+                <label for="content">Content:</label>
+                <textarea id="content" name="content">{{ article.content }}</textarea>
+            </p>
+            <p class="button">
+                <button type="submit">Save Changes</button>
+            </p>
+        </form>
 
     <!-- Footer of the webpage-->
         <footer>
             <p>&copy; 2026 The Philosophers Blog. All rights reserved.</p>
         </footer>
     </body>
-
 </html>

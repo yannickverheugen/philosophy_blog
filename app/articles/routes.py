@@ -1,7 +1,7 @@
-"""Routes for listing, viewing, and creating articles."""
+"""Routes for listing, viewing, creating, editing, and deleting articles."""
 
 from slugify import slugify
-from flask import Blueprint, redirect, render_template, request, current_app, url_for, session
+from flask import Blueprint, abort, current_app, redirect, render_template, request, session, url_for
 from .models import Article
 from app.users.models import User
 
@@ -25,6 +25,22 @@ def article(slug):
     if not article:
         return redirect('/articles')
     return render_template('article.html', article=article)
+
+
+def _get_article_for_current_user(slug):
+    """Return the article if the current user owns it, otherwise stop the request."""
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('users.get_login'))
+
+    article = Article.query.filter_by(slug=slug).first()
+    if not article:
+        return redirect(url_for('articles.list_articles'))
+
+    if article.author_id != user_id:
+        abort(403)
+
+    return article
 
 @articles_bp.route('/articles')
 def list_articles():
@@ -64,4 +80,42 @@ def article_post():
     )
     article.save()
 
+    return redirect(url_for('articles.list_articles'))
+
+
+@articles_bp.route('/articles/<slug>/edit', methods=['GET'])
+def edit_article(slug):
+    article = _get_article_for_current_user(slug)
+    if hasattr(article, 'status_code'):
+        return article
+
+    return render_template('articles/edit.html', article=article)
+
+
+@articles_bp.route('/articles/<slug>/edit', methods=['POST'])
+def update_article(slug):
+    article = _get_article_for_current_user(slug)
+    if hasattr(article, 'status_code'):
+        return article
+
+    title = request.form.get('title', '').strip()
+    content = request.form.get('content', '').strip()
+
+    if not title or not content:
+        return "Missing required fields", 400
+
+    article.title = title
+    article.content = content
+    article.save()
+
+    return redirect(url_for('articles.article', slug=article.slug))
+
+
+@articles_bp.route('/articles/<slug>/delete', methods=['POST'])
+def delete_article(slug):
+    article = _get_article_for_current_user(slug)
+    if hasattr(article, 'status_code'):
+        return article
+
+    article.delete()
     return redirect(url_for('articles.list_articles'))

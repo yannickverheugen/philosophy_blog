@@ -114,6 +114,43 @@ button {
   margin-left: 0.5em;
 }
 
+.article-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.article-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.article-action.edit {
+  background: #1f4f99;
+  color: #ffffff;
+}
+
+.article-action.delete {
+  background: #ffffff;
+  color: #a52828;
+  border-color: #d59a9a;
+}
+
+.article-delete-form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 .topics-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

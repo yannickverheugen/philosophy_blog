@@ -45,6 +45,14 @@
                 <h2><a href="/articles/{{ article.slug }}">{{ article.title }}</a></h2>
                 <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') if article.created_at else 'Unknown date' }}</p>
                 <p>{{ article.content[:100] }}...</p>
+                {% if session.get('user_id') == article.author_id %}
+                <div class="article-actions">
+                    <a class="article-action edit" href="{{ url_for('articles.edit_article', slug=article.slug) }}">Edit</a>
+                    <form class="article-delete-form" action="{{ url_for('articles.delete_article', slug=article.slug) }}" method="post">
+                        <button class="article-action delete" type="submit">Delete</button>
+                    </form>
+                </div>
+                {% endif %}
             </article>
             {% endfor %}
         </section>
