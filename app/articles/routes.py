@@ -1,8 +1,9 @@
 """Routes for listing, viewing, and creating articles."""
 
 from slugify import slugify
-from flask import Blueprint, redirect, render_template, request, current_app, url_for
+from flask import Blueprint, redirect, render_template, request, current_app, url_for, session
 from .models import Article
+from app.users.models import User
 
 articles_bp = Blueprint('articles', __name__)
 
@@ -35,17 +36,21 @@ def list_articles():
 
 @articles_bp.route('/articles/create', methods=['GET'])
 def create_article():
-    """Render the article creation form."""
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('users.get_login'))
     return render_template('articles/create.html')
 
 @articles_bp.route('/articles/create', methods=['POST'])
 def article_post():
-    """Validate article input, save it, and redirect to the list view."""
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('users.get_login'))
+
     title = request.form.get('title', '').strip()
     content = request.form.get('content', '').strip()
-    author_id = request.form.get('author_id', '').strip()
 
-    if not title or not content or not author_id:
+    if not title or not content:
         return "Missing required fields", 400
 
     base_slug = slugify(title)
@@ -54,7 +59,7 @@ def article_post():
     article = Article(
         title=title,
         content=content,
-        author_id=int(author_id),
+        author_id=int(user_id),
         slug=slug
     )
     article.save()

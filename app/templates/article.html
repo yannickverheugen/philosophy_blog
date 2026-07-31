@@ -19,6 +19,8 @@
                 <a href="{{ url_for('simple_pages.topics') }}">Topics</a>
                 <a href="{{ url_for('simple_pages.about') }}">About</a>
                 <a href="{{ url_for('simple_pages.contact') }}">Contact</a>
+                <a href="{{ url_for('users.get_login') }}">Login</a>
+                <a href="{{ url_for('users.get_register') }}">Register</a>
             </div>
         </nav>
 
@@ -39,7 +41,7 @@
 
         <article>
             <h1>{{ article.title }}</h1>
-            <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') }}</p>
+            <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') if article.created_at else 'Unknown date' }}</p>
             <div class="content">
                 {{ article.content }}
             </div>

@@ -43,7 +43,7 @@
             {% for article in articles %}
             <article>
                 <h2><a href="/articles/{{ article.slug }}">{{ article.title }}</a></h2>
-                <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') }}</p>
+                <p class="meta">By {{ article.author.username }} | {{ article.created_at.strftime('%B %d, %Y') if article.created_at else 'Unknown date' }}</p>
                 <p>{{ article.content[:100] }}...</p>
             </article>
             {% endfor %}

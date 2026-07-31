@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Yannick Verheugen" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <title>{% block title %}The Philosophers Blog{% endblock %}</title>
+  </head>
+  <body>
+    <nav>
+      <div class="topnav">
+        <a href="{{ url_for('simple_pages.index') }}">Home</a>
+        <a href="{{ url_for('articles.list_articles') }}">Articles</a>
+        <a href="{{ url_for('simple_pages.topics') }}">Topics</a>
+        <a href="{{ url_for('simple_pages.about') }}">About</a>
+        <a href="{{ url_for('simple_pages.contact') }}">Contact</a>
+        <a href="{{ url_for('users.get_login') }}">Login</a>
+        <a href="{{ url_for('users.get_register') }}">Register</a>
+      </div>
+    </nav>
+
+    <main>
+      {% block body %}{% endblock %}
+    </main>
+  </body>
+</html>
